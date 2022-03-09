@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MLS Search Engine</title>
+    <style>
+        body{
+            background: RGB(152, 180, 212);
+        }
+
+        #searchDiv{
+            display: flex;
+            justify-content: center;
+        }
+
+        input{
+            padding: 10px;
+            width: 25%;
+            font-size: 16px;
+        }
+        button{
+            padding: 5px;
+            margin: 5px;
+            margin-left: 10px;
+            font-size: 16px;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the MLS Search Engine!</h1>
+    <div id="searchDiv">
+        <input type='text' id="inputbox" name='keyword' />
+        <button type='submit' value="search" id="searchButton">Search</button>
+        <button type='submit' value="clear" id="clearButton">Clear</button>
+    </div>
+    <div id="resultButtons"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById("clearButton").onclick = function () {
+            var resultButtons = document.getElementById("resultButtons")
+            while (resultButtons.firstChild) {
+                resultButtons.removeChild(resultButtons.firstChild);
+            }
+        }
+
+        document.getElementById("searchButton").onclick = function () {
+            var keyword = document.getElementById("inputbox").value
+
+            axios
+            .get('http://localhost:8080/search?keyword=' + keyword)
+            .then(resp => {
+                console.log(`statusCode: ${resp.status}`)
+                console.log(resp)
+                for(var obj in resp.data){
+                    var key = resp.data[obj]["home"] + " VS " + resp.data[obj]["away"] + " - " + resp.data[obj]["date"]
+
+                    var resultButtons = document.getElementById("resultButtons")
+                    var gameButton = document.createElement("button")
+                    gameButton.setAttribute('type', 'button')
+                    gameButton.setAttribute('value', resp.data[obj]["id"])
+                    gameButton.id = "searchButton"
+                    gameButton.innerText = key
+                    resultButtons.appendChild(gameButton)
+                    var br = document.createElement("br")
+                    resultButtons.appendChild(br)
+                }
+            })
+            .catch(error => {
+                console.error(error)
+            })
+        };
+    </script>
+
+</body>
+
+</html>
