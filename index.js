@@ -1,17 +1,16 @@
-const { response } = require('express');
-const fs = require('fs');
-
-
 const express = require('express');
   
 // Initialize App
 const app = express();
+const path = require('path');
 
 app.engine('html', require('ejs').renderFile);
 
+app.use(express.static(path.join(__dirname)));
+
 // Assign route
 app.use('/', (req, res, next) => {
-  res.sendFile(__dirname + "/index.html");
+  res.redirect(__dirname + "/index.html");
 })
   
 // Start server
