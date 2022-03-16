@@ -3,6 +3,7 @@ document.getElementById("clearButton").onclick = function () {
     while (resultButtons.firstChild) {
         resultButtons.removeChild(resultButtons.firstChild);
     }
+    document.getElementById("inputbox").value = "";
 }
 
 document.getElementById("searchButton").onclick = function () {
