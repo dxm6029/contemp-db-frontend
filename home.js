@@ -26,6 +26,11 @@ document.getElementById("searchButton").onclick = function () {
             resultButtons.appendChild(gameButton)
             var br = document.createElement("br")
             resultButtons.appendChild(br)
+
+            gameButton.onclick = function(){
+                window.location = "item.html"+"?id="+gameButton.value;
+                    //+"&id="+ gameButton.value;
+            }
         }
     })
     .catch(error => {
