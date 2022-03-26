@@ -21,16 +21,14 @@ document.getElementById("searchButton").onclick = function () {
             var gameButton = document.createElement("button")
             gameButton.setAttribute('type', 'button')
             gameButton.setAttribute('value', resp.data[obj]["id"])
-            gameButton.id = "searchButton"
+            gameButton.class = "gameButton"
+            gameButton.addEventListener("click", function(){
+                window.location = "item.html"+"?id="+gameButton.value;
+            })
             gameButton.innerText = key
             resultButtons.appendChild(gameButton)
             var br = document.createElement("br")
             resultButtons.appendChild(br)
-
-            gameButton.onclick = function(){
-                window.location = "item.html"+"?id="+gameButton.value;
-                    //+"&id="+ gameButton.value;
-            }
         }
     })
     .catch(error => {

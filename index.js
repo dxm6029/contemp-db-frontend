@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname)));
 
 // Assign route
 app.use('/', (req, res, next) => {
-  res.redirect(__dirname + "/index.html");
+  res.send(__dirname + "/index.html");
 })
   
 // Start server
