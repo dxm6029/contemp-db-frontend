@@ -7,7 +7,25 @@
     <title>Hello</title>
 </head>
 <body onload="init()">
-<h1>Hello</h1>
+
+<div>
+    <h1 id="game"></h1>
+    <h2 id="date"></h2>
+    <div id ="score-div">
+        <h3 id="home">Home Goal Scorers: </h3>
+        <h3 id="away">Away Goal Scorers: </h3>
+        <h3 id="venue">Stadium: </h3>
+        <h3 id="attend">Attendance: </h3>
+    </div>
+    <div id="comment-div">
+        <label for="comment">Add a Comment:</label>
+        <input type="text" id="comment" name="comment">
+        <button type="button" onclick="postComment" id="comment-post">post</button>
+    </div>
+    <div id="display-comment">
+        <h2>Previous Comments:</h2>
+    </div>
+</div>
 <img id="pic" alt="Stadium pic" style="width:500px;">
 <a href="index.html">Go Back</a>
 
