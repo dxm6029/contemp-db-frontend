@@ -57,11 +57,15 @@ async function init(){
 
     let stadium = result.data.venue.split(' ').join('');
     console.log(stadium);
-    let src = await axios.get('http://localhost:8080/image?stadium=' + stadium);
+
+    await axios.get('http://localhost:8080/image?stadium=' + stadium);
+    // let pic = document.getElementById('pic');
+    // pic.src = 'http://localhost:8000/' + stadium + ".jpg";
+    let link = document.getElementById('stadiumLink');
+    link.href = 'http://localhost:8000/' + stadium + ".jpg";
     console.log("IMAGE DATA");
     console.log(result.data.venue);
-    document.getElementById("pic").src="http://localhost:8080/image.jpg";
-    document.getElementById("pic");
+
 
 }
 
